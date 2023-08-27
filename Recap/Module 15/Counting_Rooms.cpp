@@ -15,8 +15,9 @@ bool isValid(int cI, int cJ)
     else
         return false;
 }
-
+int cnt;
 void dfs(int si, int sj){
+    cnt++;
     vis[si][sj] = true;
     for (int i = 0; i<4;i++){
         pi p = path[i];
@@ -36,18 +37,20 @@ int main(){
             cin >> a[i][j];
         }
     }
-    int cnt = 0;
+    int mn = INT_MAX;
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
         {
             if(!vis[i][j] && a[i][j] == '.'){
-                cnt++;
+                cnt=0;
                 dfs(i, j);
+                mn = min(mn, cnt);
+                
             }
         }
     }
-    cout << cnt << endl;
+    cout << mn << endl;
 
     return 0;
 }
